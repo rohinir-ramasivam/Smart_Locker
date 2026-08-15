@@ -1,0 +1,15 @@
+{
+  "name": "smart-locker-system",
+  "version": "1.0.0",
+  "description": "Smart Locker Room Management System — Hardware + Software Integration",
+  "private": true,
+  "scripts": {
+    "dev": "npx concurrently -k -p \"[{name}]\" -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "start": "npx concurrently -k -p \"[{name}]\" -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm --prefix backend start\" \"npm --prefix frontend run dev\"",
+    "seed": "npm --prefix backend run seed",
+    "postinstall": "npm --prefix backend install && npm --prefix frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
