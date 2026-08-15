@@ -690,6 +690,17 @@ app.get('/api/analytics/summary', async (req, res) => {
   }
 });
 
+// Handle port in use gracefully
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`❌ Port ${PORT} is already in use by another process.`);
+    console.error(`💡 Tip: Close any running instances of node or specify PORT=5001 in environment.`);
+    process.exit(1);
+  } else {
+    console.error('❌ Server error:', err);
+  }
+});
+
 // Initialize DB and start HTTP server
 initDb().then(() => {
   server.listen(PORT, () => {
